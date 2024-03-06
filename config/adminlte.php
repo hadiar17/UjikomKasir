@@ -313,92 +313,51 @@ return [
         ],
         [
             'text'        => 'Dashboard',
-            'url'         => '/',
+            'url'         => '/dashboard',
             'icon'        => 'fas fa-home',
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
         [
-            'text'        => 'Produk',
-            'url'         => '/produk',
-            'icon'        => 'fas fa-box',
-            // 'label'       => 4,
-            // 'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Penjualan',
-            'url'         => '/penjualan',
+            'text'        => 'Transaksi',
+            'url'         => '/penjualan/create',
             'icon'        => 'fa fa-cart-plus',
         ],
-        [
-            'text'        => 'Detail Penjualan',
-            'url'         => '/detail_penjualan',
-            'icon'        => 'fas fa-paste',
-        ],
         ['header' => 'account_settings'],
+        
+        // [
+        //     'text' => 'change_password',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
+            'text'    => 'Master',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'        => 'Produk',
+                    'url'         => '/produk',
+                    'icon'        => 'fas fa-box',
+                    // 'label'       => 4,
+                    // 'label_color' => 'success',
                 ],
                 [
-                    'text'    => 'level_one',
+                    'text'        => 'Detail Transaksi',
+                    'url'         => '/detail_penjualan',
+                    'icon'        => 'fas fa-paste',
+                ],
+                [
+                    'text'    => 'Account Settings',
                     'url'     => '#',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
+                            'text' => 'User',
+                            'url'  => '/users',
+                            'icon' => 'fas fa-fw fa-user',
                         ],
                     ],
                 ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
             ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
         ],
     ],
 
@@ -483,11 +442,11 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
                 ],
             ],

@@ -4,12 +4,14 @@
 @section('title','produk')
 
 @include('partials.head')
-    
-@section('content_header')
-    <h1>Edit Produk</h1>
-@endsection
 
 @section('content')
+
+    <div class="card card-info card-outline mt-3">
+        <div class="card-header">
+            <h4>Perbarui Data </h4>
+        </div>
+    <div class="card-body">
 
     <form action="{{ route('produk.update', $produk->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -52,4 +54,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
     </form>
+</div>
+</div>
 @stop

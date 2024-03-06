@@ -185,6 +185,40 @@
         hitungJumlahBayarDanKembalian();
     });
 
+    document.getElementById('btn-simpan').addEventListener('click', function() {
+    // Panggil fungsi untuk menghitung jumlah bayar dan kembalian
+    hitungJumlahBayarDanKembalian(); 
+
+    // Ambil nilai jumlah bayar dan kembalian dari input
+    var jumlahBayar = parseFloat(document.getElementById('jumlah-bayar').value.replace(',', '')); // Menghapus tanda koma
+    var kembalian = parseFloat(document.getElementById('kembalian').value.replace(',', '')); // Menghapus tanda koma
+
+    // Lakukan validasi
+    if (isNaN(jumlahBayar) || isNaN(kembalian )) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Mohon periksa kembali jumlah bayar dan kembalian.'
+        });
+        return;
+    }
+
+    if (jumlahBayar < totalHarga) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Jumlah bayar kurang dari total harga. Harap periksa kembali.'
+        });
+        return;
+    }
+
+    // Lakukan logika untuk menyimpan transaksi
+    // Misalnya, Anda dapat membuat permintaan AJAX untuk menyimpan data ke backend
+    // Di sini saya hanya menampilkan pesan sukses ke konsol
+    console.log('Transaksi berhasil disimpan.');
+});
+
+
 });
 
 </script>

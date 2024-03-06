@@ -6,11 +6,13 @@
 
 @include('partials.head')
 
-@section('content_header')
-    <h1>Tambah Produk</h1>
-@endsection
-
 @section('content')
+
+    <div class="card card-info card-outline mt-3">
+        <div class="card-header">
+            <h4>Tambah Produk</h4>
+        </div>
+    <div class="card-body">
 
     <form action="{{ route('produk.store') }}" method="post" enctype="multipart/form-data">
         @csrf
@@ -33,6 +35,7 @@
                 <div class="form-group">
                     <label for="kategori">Kategori </label>
                     <select name="kategori" class="form-control" required>
+                        <option value="">--Pilih Kategori--</option>
                         <option value="makanan">Makanan</option>
                         <option value="minuman">Minuman</option>
                     </select>
@@ -53,7 +56,8 @@
                 </div>
             </div>
                 <button type="submit" class="btn btn-primary">Tambah Produk</button>
-
         </div>
-    </form>
+        </form>
+    </div>
+</div>
 @stop

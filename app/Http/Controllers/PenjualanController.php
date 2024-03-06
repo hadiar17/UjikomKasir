@@ -22,40 +22,6 @@ class PenjualanController extends Controller
         return view('penjualan.create', compact('produks'));
     }
 
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'tanggal' => 'required|date',
-    //         'produk.*.id' => 'required|exists:produks,id',
-    //         'produk.*.jumlah' => 'required|integer|min:1',
-    //     ]);
-
-    //     foreach ($request->produk as $produk) {
-    //         $produks = Produk::find($produk['id']);
-    //         if ($produks->stok < $produk['jumlah']) {
-    //             return redirect()->back()->with('error', 'Stok ' . $produks->nama_produk . ' tersisa ' . $produks->stok );
-    //         }
-    //     }
-
-    //     $penjualan = Penjualan::create($request->only('tanggal'));
-
-    //     foreach ($request->produk as $produk) {
-    //         $detailPenjualan = new DetailPenjualan([
-    //             'produk_id' => $produk['id'],
-    //             'jumlah' => $produk['jumlah'],
-    //             'subtotal' => Produk::find($produk['id'])->harga * $produk['jumlah'],
-    //         ]);
-
-    //         Produk::find($produk['id'])->decrement('stok', $produk['jumlah']);
-
-    //         $penjualan->detailPenjualan()->save($detailPenjualan);
-    //     }
-
-    //     return redirect()->route('penjualan.index')->with('success', 'Transaksi Berhasil');
-    // }
-
-
-
     
 public function store(Request $request)
 {
@@ -66,12 +32,7 @@ public function store(Request $request)
     $bayar      = $request-> bayar;
     $kembalian  = $request-> kembalian;
 
-    // var_dump($id_produk );die();
-    // var_dump($jumlah_produk );die();
-    // var_dump($sub_total );die();
-    // var_dump($total );die();
-    // var_dump($bayar );die();
-    // var_dump($kembalian );die();
+    
     $transaksi = Penjualan::create([
         // 'id_kasir' => '0',
         'total' => $total,
@@ -97,8 +58,7 @@ public function store(Request $request)
             'subtotal' => $subtotal,
         ]);
     }
-    // var_dump($request);die();
-    // Validasi data dari request
+    
     
 
     // Buat transaksi baru berdasarkan data yang diterima dari request

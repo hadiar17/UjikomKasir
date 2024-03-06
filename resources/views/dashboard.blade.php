@@ -12,6 +12,17 @@
 
 @section('content')
 
+    
+@if(session('error'))
+<div class="alert alert-warning alert-dismissible fade show mt-3" role="alert"">
+    {{session('error') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+
         <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
@@ -49,7 +60,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                <h3>44</h3>
+                <h3>{{ $users }}</h3>
 
                 <p>User Registrations</p>
                 </div>
