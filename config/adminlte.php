@@ -291,21 +291,21 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'search',
+        //     'topnav_right' => true,
+        // ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'search',
+        // ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -323,7 +323,13 @@ return [
             'url'         => '/penjualan/create',
             'icon'        => 'fa fa-cart-plus',
         ],
-        ['header' => 'account_settings'],
+        [
+            'text'        => 'Produk',
+            'url'         => '/produk',
+            'icon'        => 'fas fa-box',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
         
         // [
         //     'text' => 'change_password',
@@ -333,29 +339,18 @@ return [
         [
             'text'    => 'Master',
             'icon'    => 'fas fa-fw fa-share',
+            'can' => ['access-pegawai'],
             'submenu' => [
-                [
-                    'text'        => 'Produk',
-                    'url'         => '/produk',
-                    'icon'        => 'fas fa-box',
-                    // 'label'       => 4,
-                    // 'label_color' => 'success',
-                ],
                 [
                     'text'        => 'Detail Transaksi',
                     'url'         => '/detail_penjualan',
                     'icon'        => 'fas fa-paste',
                 ],
                 [
-                    'text'    => 'Account Settings',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'User',
-                            'url'  => '/users',
-                            'icon' => 'fas fa-fw fa-user',
-                        ],
-                    ],
+                    'text' => 'User',
+                    'url'  => '/users',
+                    'icon' => 'fas fa-fw fa-user',
+                    
                 ],
             ],
         ],
@@ -432,12 +427,12 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                    'asset' => true,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js',
                 ],
             ],
         ],

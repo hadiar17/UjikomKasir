@@ -19,15 +19,14 @@ use App\Http\Controllers\DetailPenjualanController;
 |
 */
 
-// Route untuk menampilkan halaman login
+// Route untuk login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
-// Route untuk mengirimkan data login
+// Route untuk login
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 // Route untuk logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
 
 Route::resource('dashboard', DashboardController::class);
 Route::resource('produk', ProdukController::class);
@@ -36,23 +35,24 @@ Route::resource('detail_penjualan', DetailPenjualanController::class);
 Route::resource('users', UserController::class);
 
 Route::middleware(['auth'])->group(function () {
-    // Definisikan route untuk admin dan pegawai di sini
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
 });
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    // Definisikan route untuk admin di sini
-    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
     Route::get('/penjualan', [PenjualanController::class, 'create'])->name('penjualan.create');
+    // Route::get('/struk', [PenjualanController::class, 'simpanTransaksi'])->name('struk');
     Route::get('/detail_penjualan', [DetailPenjualanController::class, 'index'])->name('detail_penjualan.index');
+    Route::get('/cetakLaporan', [DetailPenjualanController::class, 'cetakLaporan'])->name('cetakLaporan');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    
 });
 
 Route::middleware(['auth', 'role:pegawai'])->group(function () {
-    // Definisikan route untuk pegawai di sini
     Route::get('/penjualan', [PenjualanController::class, 'create'])->name('penjualan.create');
+    
+
 });
 
 

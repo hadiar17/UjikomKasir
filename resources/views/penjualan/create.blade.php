@@ -1,5 +1,3 @@
-<!-- resources/views/penjualan/create.blade.php -->
-
 @extends('adminlte::page')
 
 @section('title','penjualan')
@@ -18,20 +16,33 @@
 
 @section('content')
 
+
+@if(session('success'))
+<div class="alert alert-success alert-dismissible fade show mt-3" role="alert"">
+    {{session('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+
+
+
 <div class="container-fluid">
     <div class="row">
         <!-- Tampilkan daftar produk -->
         <div class="col-md-9" style="max-height: 90vh; overflow-y: auto;">
             <div class="row">
                 @foreach ($produks as $produk)
-                <div class="col-lg-3 col-md-6 col-xs-12 mb-4 mt-3"> 
+                <div class="col-lg-3 col-md-6 col-xs-12 mb-2 mt-2"> 
                     <div class="card product-card">
                         <div class="produk" data-id="{{ $produk->id }}" data-nama="{{ $produk->nama_produk }}" data-stok="{{ $produk->stok }}" data-harga="{{ $produk->harga }}" data-jumlah="1">
                             <img src="{{ asset('uploads/' . $produk->gambar) }}" class="card-img-top product-img" alt="{{ $produk->nama_produk }}" width="200px" height="200px">
                             <div class="card-body">
                                 <h5 class="card-title"><b>{{ $produk->nama_produk }}</b></h5>
                                 <br>
-                                <p class="card-text badge badge-success">Rp. {{ number_format($produk->harga, 0, ',', '.') }}</p>
+                                <p class="card-text badge badge-primary">Rp. {{ number_format($produk->harga, 0, ',', '.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -66,6 +77,7 @@
                     </div>
                     
                     <button type="submit" class="btn btn-primary" id="btn-simpan">Simpan Transaksi</button>
+                    {{-- <a href="{{ route('cetakLaporan') }}" target="_blank" class="btn btn-success">Cetak Laporan <i class="fas fa-print"></i></a> --}}
                 </div>
             </form>
             </div>
@@ -77,7 +89,7 @@
 <!-- Script JavaScript -->
 <script>
  document.addEventListener('DOMContentLoaded', function() {
-    var daftarTransaksi = {}; // Objek untuk menyimpan transaksi dengan id produk sebagai kunci
+    var daftarTransaksi = {}; // Objek untuk menyimpan transaksi
     var totalHarga = 0;
 
     var produkItems = document.querySelectorAll('.produk');
@@ -87,7 +99,7 @@
             var nama = produkItem.getAttribute('data-nama');
             var harga = parseFloat(produkItem.getAttribute('data-harga'));
             var stok = produkItem.getAttribute('data-stok');
-            var gambar = produkItem.querySelector('img').src; // Ambil URL gambar produk
+            var gambar = produkItem.querySelector('img').src; 
 
             tambahkanProdukKeTransaksi(id, nama, harga, stok, gambar,);
         });
@@ -101,7 +113,7 @@
                 harga: harga,
                 stok : stok,
                 subtotal: harga,
-                gambar: gambar // Simpan URL gambar produk
+                gambar: gambar 
             };
 
             // Tambahkan item baru ke daftar transaksi
@@ -176,24 +188,23 @@
         $('#kembalian').val(kembalian);
     }
 
-   // Hitung total harga saat halaman dimuat
-   totalHarga = hitungTotalHarga();
-    $('#totalharga').val(totalHarga);
+    // Hitung total harga saat halaman dimuat
+    totalHarga = hitungTotalHarga();
+        $('#totalharga').val(totalHarga);
 
-    // Tambahkan event listener untuk tombol hitung total
     document.getElementById('jumlah-bayar').addEventListener('input', function() {
         hitungJumlahBayarDanKembalian();
     });
 
     document.getElementById('btn-simpan').addEventListener('click', function() {
-    // Panggil fungsi untuk menghitung jumlah bayar dan kembalian
+
     hitungJumlahBayarDanKembalian(); 
 
     // Ambil nilai jumlah bayar dan kembalian dari input
     var jumlahBayar = parseFloat(document.getElementById('jumlah-bayar').value.replace(',', '')); // Menghapus tanda koma
     var kembalian = parseFloat(document.getElementById('kembalian').value.replace(',', '')); // Menghapus tanda koma
 
-    // Lakukan validasi
+  
     if (isNaN(jumlahBayar) || isNaN(kembalian )) {
         Swal.fire({
             icon: 'error',
@@ -209,13 +220,11 @@
             title: 'Oops...',
             text: 'Jumlah bayar kurang dari total harga. Harap periksa kembali.'
         });
-        return;
+        return; 
     }
 
-    // Lakukan logika untuk menyimpan transaksi
-    // Misalnya, Anda dapat membuat permintaan AJAX untuk menyimpan data ke backend
-    // Di sini saya hanya menampilkan pesan sukses ke konsol
     console.log('Transaksi berhasil disimpan.');
+  
 });
 
 
